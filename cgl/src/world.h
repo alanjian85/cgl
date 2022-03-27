@@ -18,6 +18,9 @@ namespace cgl {
             back_buffer_ = &cells_[1];
             cells_[0].resize(width * height);
             cells_[1].resize(width * height);
+            start_color();
+            init_pair(0, COLOR_BLACK, COLOR_BLACK);
+            init_pair(1, COLOR_WHITE, COLOR_WHITE);
         }
 
         int getWidth() const {
@@ -49,9 +52,13 @@ namespace cgl {
             for (int x = 0; x < width_; ++x) {
                 for (int y = 0; y < height_; ++y) {
                     if ((*front_buffer_)[y * width_ + x].isAlive()) {
-                        mvaddch(y, x, '*');
+                        attron(COLOR_PAIR(0));
+                        mvaddch(y, x, ' ');
+                        attroff(COLOR_PAIR(0));
                     } else {
-                        mvaddch(y, x, '.');
+                        attron(COLOR_PAIR(1));
+                        mvaddch(y, x, ' ');
+                        attroff(COLOR_PAIR(1));
                     }
                 }
             }
