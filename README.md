@@ -6,6 +6,7 @@ Conway's Game of Life
 * Game of Life
 * Pause Key
 * Sandbox
+* Dynamic Speed
 
 ## Control
 | Function | Key   |

@@ -19,7 +19,7 @@ int main() {
     init_pair(0, COLOR_GREEN, COLOR_GREEN);
 
     World world(COLS, LINES);
-    constexpr auto tick = 100ms;
+    auto tick = 100ms;
     auto last_time = std::chrono::system_clock::now();
     bool quit = false, pause = true;
     int x = 0, y = 0;
@@ -46,6 +46,13 @@ int main() {
                 break;
             case ' ':
                 world.setCell(x, y, !world.getCell(x, y).isAlive());
+                break;
+            case KEY_F(1):
+                tick += 50ms;
+                break;
+            case KEY_F(2):
+                if (tick > 50ms)
+                    tick -= 50ms;
                 break;
         }
         x = std::clamp(x, 0, COLS);
