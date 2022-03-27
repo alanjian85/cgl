@@ -60,8 +60,8 @@ int main() {
                 world.resize(COLS, LINES);
                 break;
         }
-        cursor_x = std::clamp(cursor_x, 0, world.getWidth());
-        cursor_y = std::clamp(cursor_y, 0, world.getHeight());
+        cursor_x = std::clamp(cursor_x, 0, world.getWidth() - 1);
+        cursor_y = std::clamp(cursor_y, 0, world.getHeight() - 1);
 
         auto curr_time = std::chrono::system_clock::now();
         if (!pause) {
