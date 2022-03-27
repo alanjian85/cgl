@@ -14,7 +14,7 @@ namespace cgl {
             return alive_;
         }
 
-        void update(World& world, int x, int y);
+        void update(World& world, int x, int y) const;
     private:
         bool alive_;
     };

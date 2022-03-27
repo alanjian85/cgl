@@ -3,7 +3,7 @@ using namespace cgl;
 
 #include "world.h"
 
-void Cell::update(World& world, int x, int y) {
+void Cell::update(World& world, int x, int y) const {
     int count = 0;
     for (int i = x - 1; i <= x + 1; ++i) {
         for (int j = y - 1; j <= y + 1; ++j) {
@@ -16,9 +16,9 @@ void Cell::update(World& world, int x, int y) {
     }
 
     if (count < 2)
-        alive_ = false;
+        world.setCell(x, y, Cell(false));
     else if (count == 3)
-        alive_ = true;
+        world.setCell(x, y, Cell(true));
     else if (count > 3)
-        alive_ = false;
+        world.setCell(x, y, Cell(false));
 }

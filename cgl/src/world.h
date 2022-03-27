@@ -9,10 +9,13 @@ namespace cgl {
     class World {
     public:
         World(int width, int height)
-            : cells_(width * height)
         {
             width_ = width;
             height_ = height;
+            front_buffer_ = &cells_[0];
+            back_buffer_ = &cells_[1];
+            cells_[0].resize(width * height);
+            cells_[1].resize(width * height);
         }
 
         int getWidth() const {
@@ -24,16 +27,27 @@ namespace cgl {
         }
 
         void setCell(int x, int y, Cell cell) {
-            cells_[y * width_ + x] = cell;
+            (*front_buffer_)[y * width_ + x] = cell;
         }
 
-        Cell getCell(int x, int y) const {
-            return cells_[y * width_ + x];
+        Cell& getCell(int x, int y) {
+            return (*back_buffer_)[y * width_ + x];
+        }
+
+        void update() {
+            for (int x = 0; x < width_; ++x) {
+                for (int y = 0; y < height_; ++y) {
+                    getCell(x, y).update(*this, x, y);
+                }
+            }
+            std::swap(front_buffer_, back_buffer_);
         }
     private:
         int width_;
         int height_;
-        std::vector<Cell> cells_;
+        std::vector<Cell>* front_buffer_;
+        std::vector<Cell>* back_buffer_;
+        std::vector<Cell> cells_[2];
     };
 }
 
