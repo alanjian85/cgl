@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include <ncurses.h>
+
 #include "cell.h"
 
 namespace cgl {
@@ -35,12 +37,24 @@ namespace cgl {
         }
 
         void update() {
+            std::swap(front_buffer_, back_buffer_);
             for (int x = 0; x < width_; ++x) {
                 for (int y = 0; y < height_; ++y) {
-                    getCell(x, y).update(*this, x, y);
+                    (*front_buffer_)[y * width_ + x].update(*this, x, y);
                 }
             }
-            std::swap(front_buffer_, back_buffer_);
+        }
+
+        void display() {
+            for (int x = 0; x < width_; ++x) {
+                for (int y = 0; y < height_; ++y) {
+                    if ((*front_buffer_)[y * width_ + x].isAlive()) {
+                        mvaddch(y, x, '*');
+                    } else {
+                        mvaddch(y, x, '.');
+                    }
+                }
+            }
         }
     private:
         int width_;
