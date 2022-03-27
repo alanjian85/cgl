@@ -7,6 +7,7 @@ Conway's Game of Life
 * Pause Key
 * Sandbox
 * Dynamic Speed
+* Window Resize
 
 ## Control
 | Function | Key   |

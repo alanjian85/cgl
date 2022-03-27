@@ -56,6 +56,9 @@ int main() {
                 if (tick > 50ms)
                     tick -= 50ms;
                 break;
+            case KEY_RESIZE:
+                world.resize(COLS, LINES);
+                break;
         }
         cursor_x = std::clamp(cursor_x, 0, world.getWidth());
         cursor_y = std::clamp(cursor_y, 0, world.getHeight());

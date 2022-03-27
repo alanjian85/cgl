@@ -12,6 +12,8 @@ namespace cgl {
     public:
         World(int width, int height);
 
+        void resize(int width, int height);
+
         int getWidth() const {
             return width_;
         }
