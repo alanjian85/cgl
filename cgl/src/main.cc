@@ -1,9 +1,12 @@
 #include <algorithm>
 #include <chrono>
+#include <string>
 
+#include <fmt/format.h>
 #include <ncurses.h>
 
 #include "cell.h"
+#include "cgl_config.h"
 #include "world.h"
 using namespace cgl;
 
@@ -19,6 +22,7 @@ int main() {
     init_pair(0, COLOR_BLACK, COLOR_BLACK);
     init_pair(1, COLOR_WHITE, COLOR_WHITE);
     init_pair(2, COLOR_BLUE, COLOR_BLUE);
+    init_pair(3, COLOR_BLACK, COLOR_WHITE);
 
     World world(COLS, LINES);
     auto tick = 100ms;
@@ -86,6 +90,20 @@ int main() {
                 }
             }
         }
+
+        attron(COLOR_PAIR(3));
+        if (pause) {
+            mvprintw(world.getHeight() - 1, 0, "-- PAUSED --");
+        }
+        std::string title = fmt::format(
+            "Conway's Game of Life {}.{}.{}", 
+            CGL_VERSION_MAJOR, 
+            CGL_VERSION_MINOR, 
+            CGL_VERSION_PATCH
+        );
+        auto size = static_cast<int>(title.size());
+        mvprintw(world.getHeight() - 1, std::max(world.getWidth() - 1 - size, 0), title.c_str());
+        attroff(COLOR_PAIR(3));
 
         attron(COLOR_PAIR(2));
         mvaddch(cursor_y, cursor_x, ' ');

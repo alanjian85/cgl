@@ -17,4 +17,5 @@ Conway's Game of Life
 | Toggle   | Space |
 
 ## Dependencies
+* [{fmt}](https://github.com/fmtlib/fmt)
 * [ncurses](https://invisible-island.net/)
