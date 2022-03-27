@@ -1,10 +1,10 @@
 #include <ncurses.h>
 
+#include "cell.h"
+
 int main() {
     initscr();
     printw("Hello world!");
     refresh();
-    getch();
-    endwin();
     return 0;
 }
