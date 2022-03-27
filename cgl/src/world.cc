@@ -14,8 +14,6 @@ World::World(int width, int height) {
             (*back_buffer_)[y * width_ + x] = Cell(false, x, y);
         }
     }
-    init_pair(1, COLOR_BLACK, COLOR_BLACK);
-    init_pair(2, COLOR_WHITE, COLOR_WHITE);
 }
 
 void World::update() {
@@ -25,20 +23,4 @@ void World::update() {
         }
     }
     std::swap(front_buffer_, back_buffer_);
-}
-
-void World::display() {
-    for (int x = 0; x < width_; ++x) {
-        for (int y = 0; y < height_; ++y) {
-            if ((*front_buffer_)[y * width_ + x].isAlive()) {
-                attron(COLOR_PAIR(1));
-                mvaddch(y, x, ' ');
-                attroff(COLOR_PAIR(1));
-            } else {
-                attron(COLOR_PAIR(2));
-                mvaddch(y, x, ' ');
-                attroff(COLOR_PAIR(2));
-            }
-        }
-    }
 }

@@ -29,9 +29,11 @@ namespace cgl {
             return (*back_buffer_)[y * width_ + x];
         }
 
-        void update();
+        Cell& getFrontCell(int x, int y) {
+            return (*front_buffer_)[y * width_ + x];
+        }
 
-        void display();
+        void update();
     private:
         int width_;
         int height_;

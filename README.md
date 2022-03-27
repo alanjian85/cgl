@@ -12,7 +12,8 @@ Conway's Game of Life
 | Function | Key   |
 |----------|-------|
 | Quit     | Q     |
-| Pause    | Space |
+| Pause    | Enter |
+| Toggle   | Space |
 
 ## Dependencies
 * [ncurses](https://invisible-island.net/)
