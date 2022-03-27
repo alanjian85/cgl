@@ -12,6 +12,15 @@ namespace cgl {
             : cells_(width * height)
         {
             width_ = width;
+            height_ = height;
+        }
+
+        int getWidth() const {
+            return width_;
+        }
+
+        int getHeight() const {
+            return height_;
         }
 
         void setCell(int x, int y, Cell cell) {
@@ -23,6 +32,7 @@ namespace cgl {
         }
     private:
         int width_;
+        int height_;
         std::vector<Cell> cells_;
     };
 }

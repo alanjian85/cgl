@@ -10,6 +10,10 @@ namespace cgl {
             alive_ = alive;
         }
 
+        bool isAlive() const {
+            return alive_;
+        }
+
         void update(World& world, int x, int y);
     private:
         bool alive_;
