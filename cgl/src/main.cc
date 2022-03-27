@@ -45,7 +45,7 @@ int main() {
                 x += 1;
                 break;
             case ' ':
-                world.setCell(x, y, Cell(!world.getFrontCell(x, y).isAlive()));
+                world.setCell(x, y, !world.getCell(x, y).isAlive());
                 break;
         }
         x = std::clamp(x, 0, COLS);

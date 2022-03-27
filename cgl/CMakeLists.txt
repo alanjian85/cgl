@@ -1,8 +1,10 @@
 set(CGL_SRCS
-    src/cell.h
     src/cell.cc
+    src/cell.h
     src/main.cc
-    src/world.h)
+    src/world.cc
+    src/world.h
+)
 add_executable(cgl ${CGL_SRCS})
 
 find_package(Curses REQUIRED)

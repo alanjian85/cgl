@@ -10,17 +10,7 @@
 namespace cgl {
     class World {
     public:
-        World(int width, int height)
-        {
-            width_ = width;
-            height_ = height;
-            front_buffer_ = &cells_[0];
-            back_buffer_ = &cells_[1];
-            cells_[0].resize(width * height);
-            cells_[1].resize(width * height);
-            init_pair(1, COLOR_BLACK, COLOR_BLACK);
-            init_pair(2, COLOR_WHITE, COLOR_WHITE);
-        }
+        World(int width, int height);
 
         int getWidth() const {
             return width_;
@@ -30,42 +20,18 @@ namespace cgl {
             return height_;
         }
 
-        void setCell(int x, int y, Cell cell) {
-            (*front_buffer_)[y * width_ + x] = cell;
+        void setCell(int x, int y, bool alive) {
+            (*front_buffer_)[y * width_ + x].setAlive(alive);
+            (*back_buffer_)[y * width_ + x].setAlive(alive);
         }
 
-        Cell getCell(int x, int y) {
+        Cell& getCell(int x, int y) {
             return (*back_buffer_)[y * width_ + x];
         }
 
-        Cell& getFrontCell(int x, int y) {
-            return (*front_buffer_)[y * width_ + x];
-        }
+        void update();
 
-        void update() {
-            std::swap(front_buffer_, back_buffer_);
-            for (int x = 0; x < width_; ++x) {
-                for (int y = 0; y < height_; ++y) {
-                    getFrontCell(x, y).update(*this, x, y);
-                }
-            }
-        }
-
-        void display() {
-            for (int x = 0; x < width_; ++x) {
-                for (int y = 0; y < height_; ++y) {
-                    if (getFrontCell(x, y).isAlive()) {
-                        attron(COLOR_PAIR(1));
-                        mvaddch(y, x, ' ');
-                        attroff(COLOR_PAIR(1));
-                    } else {
-                        attron(COLOR_PAIR(2));
-                        mvaddch(y, x, ' ');
-                        attroff(COLOR_PAIR(2));
-                    }
-                }
-            }
-        }
+        void display();
     private:
         int width_;
         int height_;

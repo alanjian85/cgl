@@ -6,7 +6,11 @@ namespace cgl {
 
     class Cell {
     public:
-        explicit Cell(bool alive = false) {
+        Cell() = default;
+
+        explicit Cell(bool alive, int x, int y) {
+            x_ = x;
+            y_ = y;
             alive_ = alive;
         }
 
@@ -14,8 +18,14 @@ namespace cgl {
             return alive_;
         }
 
-        void update(World& world, int x, int y);
+        void setAlive(bool alive) {
+            alive_ = alive;
+        }
+
+        void update(World& world);
     private:
+        int x_;
+        int y_;
         bool alive_;
     };
 }
