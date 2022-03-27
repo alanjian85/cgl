@@ -5,8 +5,6 @@ Conway's Game of Life
 * Terminal Interface
 * Game of Life
 * Pause Key
-
-## TODO
 * Sandbox
 
 ## Control

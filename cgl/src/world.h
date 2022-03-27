@@ -18,9 +18,8 @@ namespace cgl {
             back_buffer_ = &cells_[1];
             cells_[0].resize(width * height);
             cells_[1].resize(width * height);
-            start_color();
-            init_pair(0, COLOR_BLACK, COLOR_BLACK);
-            init_pair(1, COLOR_GREEN, COLOR_GREEN);
+            init_pair(1, COLOR_BLACK, COLOR_BLACK);
+            init_pair(2, COLOR_WHITE, COLOR_WHITE);
         }
 
         int getWidth() const {
@@ -35,15 +34,19 @@ namespace cgl {
             (*front_buffer_)[y * width_ + x] = cell;
         }
 
-        Cell& getCell(int x, int y) {
+        Cell getCell(int x, int y) {
             return (*back_buffer_)[y * width_ + x];
+        }
+
+        Cell& getFrontCell(int x, int y) {
+            return (*front_buffer_)[y * width_ + x];
         }
 
         void update() {
             std::swap(front_buffer_, back_buffer_);
             for (int x = 0; x < width_; ++x) {
                 for (int y = 0; y < height_; ++y) {
-                    (*front_buffer_)[y * width_ + x].update(*this, x, y);
+                    getFrontCell(x, y).update(*this, x, y);
                 }
             }
         }
@@ -51,14 +54,14 @@ namespace cgl {
         void display() {
             for (int x = 0; x < width_; ++x) {
                 for (int y = 0; y < height_; ++y) {
-                    if ((*front_buffer_)[y * width_ + x].isAlive()) {
-                        attron(COLOR_PAIR(0));
-                        mvaddch(y, x, ' ');
-                        attroff(COLOR_PAIR(0));
-                    } else {
+                    if (getFrontCell(x, y).isAlive()) {
                         attron(COLOR_PAIR(1));
                         mvaddch(y, x, ' ');
                         attroff(COLOR_PAIR(1));
+                    } else {
+                        attron(COLOR_PAIR(2));
+                        mvaddch(y, x, ' ');
+                        attroff(COLOR_PAIR(2));
                     }
                 }
             }
