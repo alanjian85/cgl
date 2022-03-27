@@ -11,32 +11,37 @@ int main() {
     using namespace std::literals;
     auto window = initscr();
     nodelay(window, TRUE);
+
     World world(COLS, LINES);
     world.setCell(2, 1, Cell(true));
     world.setCell(3, 2, Cell(true));
     world.setCell(1, 3, Cell(true));
     world.setCell(2, 3, Cell(true));
     world.setCell(3, 3, Cell(true));
-    
-    bool quit = false;
-    bool paused = false;
+
+    constexpr auto tick = 100ms;
+    auto last_time = std::chrono::system_clock::now();
+    bool quit = false, pause = true;
     while (!quit) {
         switch (getch()) {
             case ' ':
-                paused = !paused;
+                last_time = std::chrono::system_clock::now();
+                pause = !pause;
                 break;
             case 'q':
                 quit = true;
-                continue;
                 break;
         }
 
-        if (!paused) {
-            world.update();
+        auto curr_time = std::chrono::system_clock::now();
+        if (!pause) {
+            for (int i = 0; i < (curr_time - last_time) / tick; ++i) {
+                world.update();
+                last_time += tick;
+            }
         }
         world.display();
         refresh();
-        std::this_thread::sleep_for(250ms);
     }
 
     endwin();

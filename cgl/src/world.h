@@ -20,7 +20,7 @@ namespace cgl {
             cells_[1].resize(width * height);
             start_color();
             init_pair(0, COLOR_BLACK, COLOR_BLACK);
-            init_pair(1, COLOR_WHITE, COLOR_WHITE);
+            init_pair(1, COLOR_GREEN, COLOR_GREEN);
         }
 
         int getWidth() const {
