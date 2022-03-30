@@ -7,10 +7,7 @@ void Cell::update(World& world) {
     int count = 0;
     for (int i = x_ - 1; i <= x_ + 1; ++i) {
         for (int j = y_ - 1; j <= y_ + 1; ++j) {
-            if (i >= 0 && i < world.getWidth() &&
-                j >= 0 && j < world.getHeight() &&
-                (i != x_ || j != y_))
-            {   
+            if (i != x_ || j != y_) {
                 count += world.getCell(i, j).isAlive();
             }
         }

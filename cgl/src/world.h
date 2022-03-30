@@ -30,10 +30,14 @@ namespace cgl {
         }
 
         Cell& getCell(int x, int y) {
+            x = (x % width_ + width_) % width_;
+            y = (y % height_ + height_) % height_;
             return (*back_buffer_)[y * width_ + x];
         }
 
         Cell& getFrontCell(int x, int y) {
+            x %= width_;
+            y %= height_;
             return (*front_buffer_)[y * width_ + x];
         }
 
