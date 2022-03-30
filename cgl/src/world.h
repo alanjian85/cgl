@@ -14,6 +14,8 @@ namespace cgl {
 
         void resize(int width, int height);
 
+        void clear();
+
         int getWidth() const {
             return width_;
         }

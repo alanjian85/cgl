@@ -28,7 +28,7 @@ int main() {
     auto tick = 100ms;
     auto last_time = std::chrono::system_clock::now();
     bool quit = false, pause = true;
-    int cursor_x = 0, cursor_y = 0;
+    int cursor_x = (world.getWidth() - 1) / 2, cursor_y = (world.getHeight() - 1) / 2;
     while (!quit) {
         switch (getch()) {
             case '\n':
@@ -37,6 +37,9 @@ int main() {
                 break;
             case 'q':
                 quit = true;
+                break;
+            case 'c':
+                world.clear();
                 break;
             case KEY_UP:
                 cursor_y -= 1;

@@ -8,6 +8,10 @@ World::World(int width, int height) {
     back_buffer_ = &cells_[1];
     cells_[0].resize(width * height);
     cells_[1].resize(width * height);
+    clear();
+}
+
+void World::clear() {
     for (int x = 0; x < width_; ++x) {
         for (int y = 0; y < height_; ++y) {
             (*front_buffer_)[y * width_ + x] = Cell(false, x, y);

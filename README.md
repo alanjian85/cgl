@@ -12,6 +12,7 @@ Conway's Game of Life
 ## Control
 | Function | Key   |
 |----------|-------|
+| Clear    | C     |
 | Quit     | Q     |
 | Pause    | Enter |
 | Toggle   | Space |
