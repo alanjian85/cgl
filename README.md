@@ -1,5 +1,6 @@
-# cgl
-Conway's Game of Life
+# Conway's Game of Life
+
+[![asciicast](https://asciinema.org/a/I7BnNp0OPsDaoWx4Mx3yBTshA.svg)](https://asciinema.org/a/I7BnNp0OPsDaoWx4Mx3yBTshA)
 
 ## Features
 * Terminal Interface
@@ -10,12 +11,14 @@ Conway's Game of Life
 * Window Resize
 
 ## Control
-| Function | Key   |
-|----------|-------|
-| Clear    | C     |
-| Quit     | Q     |
-| Pause    | Enter |
-| Toggle   | Space |
+| Function | Key       |
+|----------|-----------|
+| Clear    | C         |
+| Quit     | Q         |
+| Pause    | Enter     | 
+| Toggle   | Space     |
+| 1        | Speed Up  |
+| 2        | Slow Down |
 
 ## Dependencies
 * [{fmt}](https://github.com/fmtlib/fmt)
