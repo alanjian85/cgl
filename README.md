@@ -1,14 +1,15 @@
 # Conway's Game of Life
 
-[![asciicast](https://asciinema.org/a/I7BnNp0OPsDaoWx4Mx3yBTshA.svg)](https://asciinema.org/a/I7BnNp0OPsDaoWx4Mx3yBTshA)
+## Game Footage
 
-## Features
-* Terminal Interface
-* Game of Life
-* Pause Key
-* Sandbox
-* Dynamic Speed
-* Window Resize
+### Space Ship
+[![Space Ship](https://asciinema.org/a/U1pJcwLJTSKX8YjsernU0WHWR.svg)](https://asciinema.org/a/U1pJcwLJTSKX8YjsernU0WHWR)
+
+### Acorn
+[![Acorn](https://asciinema.org/a/WuJzSAGQ93z7lYOCznypubqjD.svg)](https://asciinema.org/a/WuJzSAGQ93z7lYOCznypubqjD)
+
+### Diehard
+[![Diehard](https://asciinema.org/a/Hevnf1P5DW2f788wTrSMnC9xK.svg)](https://asciinema.org/a/Hevnf1P5DW2f788wTrSMnC9xK)
 
 ## Control
 | Function | Key       |
@@ -17,8 +18,8 @@
 | Quit     | Q         |
 | Pause    | Enter     | 
 | Toggle   | Space     |
-| 1        | Speed Up  |
-| 2        | Slow Down |
+| F1       | Speed Up  |
+| F2       | Slow Down |
 
 ## Dependencies
 * [{fmt}](https://github.com/fmtlib/fmt)
